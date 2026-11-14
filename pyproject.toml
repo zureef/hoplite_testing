@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handmouse"
+version = "0.1.0"
+description = "Move and click the mouse pointer with your hand, tracked through a webcam."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mediapipe>=1.2",
+    "numpy",
+    # The OpenCV build MediaPipe itself depends on; a second OpenCV package would clash with it.
+    "opencv-contrib-python",
+    "python-xlib",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+handmouse = "handmouse.app:main"
+
+[tool.setuptools]
+packages = ["handmouse"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
